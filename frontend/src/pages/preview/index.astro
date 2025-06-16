@@ -1,0 +1,19 @@
+---
+export const prerender = false
+
+import Layout from "../../layouts/Layout.astro"
+import HeroContent from "../../components/index/HeroContent.astro"
+import LivePreview from "../../components/LivePreview.astro"
+
+import { getGlobal } from "../../lib/payload"
+
+const isDraft = import.meta.env.DEV || Astro.url.pathname.startsWith('/preview')
+const landingPage = await getGlobal('landing-page', isDraft)
+---
+
+<Layout>
+    <HeroContent {landingPage}/>
+</Layout>
+
+
+<LivePreview/>

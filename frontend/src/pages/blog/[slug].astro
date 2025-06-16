@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
+
+export async function getStaticPaths() {
+    const apiUrl = import.meta.env.PAYLOAD_URL || "http://localhost:3000";
+    const response = await fetch(`${apiUrl}/api/posts?limit=1000&draft=false`);
+    const { docs } = await response.json();
+
+    return docs.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+
+const content = post.content;
+
+const contentHTML = convertLexicalToHTML({class: 'test-class',data: post.content});
+---
+<Layout>
+    <div class="container mx-auto my-16">
+        <article class="mx-auto w-fit" data-id={post.id}>
+            <h1 class="text-4xl font-semibold" data-text-field="title">{post.title}</h1>
+            <div class="prose" data-text-field="content" set:html={contentHTML} />
+        </article>
+    </div>
+</Layout>

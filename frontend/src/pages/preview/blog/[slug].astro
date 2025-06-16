@@ -1,0 +1,64 @@
+---
+export const prerender = false;
+
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
+import Layout from '../../../layouts/Layout.astro';
+import LivePreview from '../../../components/LivePreview.astro'
+
+const { slug } = Astro.params;
+const apiUrl = "http://localhost:3000";
+
+const response = await fetch(`${apiUrl}/api/posts?where[slug][equals]=${slug}&draft=true&limit=1`);
+const { docs } = await response.json();
+const post = docs[0];
+
+let contentHTML = convertLexicalToHTML({ data: post?.content });
+---
+<Layout>
+    <article class="prose container mx-auto my-12 px-4">
+      <h1 data-field="title">{post?.title}</h1>
+      <div data-field="content" set:html={contentHTML} />
+    </article>
+</Layout>
+<LivePreview />
+
+<!-- ALTERNATIVE SCRIPT USING PAYLOAD LIVE PREVIEW HOOKS -->
+<!-- <script>
+    import { subscribe, ready } from "@payloadcms/live-preview";
+    import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
+
+    const serverUrl = "http://localhost:3000";
+
+    subscribe({
+        callback: (mergedData) => {
+            console.log('Live preview data received:', mergedData);
+
+            // Update title
+            if (mergedData.title) {
+                const titleElement = document.querySelector('[data-text-field="title"]');
+                if (titleElement) {
+                    titleElement.textContent = mergedData.title;
+                }
+            }
+
+            // For rich text content, just show an indicator for now
+            if (mergedData.content) {
+                const contentElement = document.querySelector('[data-text-field="content"]');
+                if (contentElement) {
+                    try {
+                        const html = convertLexicalToHTML({ data: mergedData.content });
+                        contentElement.innerHTML = html;
+                    } catch (error) {
+                        console.error('Failed to convert rich text:', error);
+                        contentElement.innerHTML = '<p>[Error converting rich text]</p>';
+                    }
+                }
+            }
+        },
+        serverURL: serverUrl,
+    });
+
+    ready({
+        serverURL: serverUrl
+    });
+</script> -->

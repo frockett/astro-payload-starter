@@ -1,0 +1,22 @@
+{
+  "name": "front-end",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.2.2",
+    "@payloadcms/live-preview": "^3.42.0",
+    "@payloadcms/richtext-lexical": "^3.42.0",
+    "@tailwindcss/vite": "^4.1.10",
+    "astro": "^5.9.3",
+    "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16"
+  }
+}

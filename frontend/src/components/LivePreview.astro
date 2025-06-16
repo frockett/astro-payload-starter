@@ -1,0 +1,12 @@
+<script is:inline>
+  window.addEventListener(
+    'message',
+    (event) => {
+      if (event.data.type === 'payload-document-event') {
+        // reload the page whenever a document is saved in the admin panel to get the latest data
+        location.reload()
+      }
+    },
+    false, // Add false to ensure event bubbles up through iframes
+  )
+</script>

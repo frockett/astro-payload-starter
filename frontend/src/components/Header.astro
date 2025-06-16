@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets'
+// src/components/Header.astro
+interface NavigationItem {
+  label: string
+  url: string
+  external: boolean
+}
+
+interface Props {
+  logo?: {
+    url: string
+    alt: string
+  }
+  siteName?: string
+  navigation?: NavigationItem[]
+}
+
+const { logo, siteName = "My Site", navigation = [] } = Astro.props
+
+
+---
+
+<header class="header container mx-auto">
+  <div class="flex items-center justify-between p-4">
+      <div>
+        <a href="/">
+            {logo ? (
+                <Image src={logo.url} alt={logo.alt} inferSize />
+            ) : (
+                <h1>{siteName}</h1>
+            )}
+        </a>
+    </div>
+
+    <nav>
+        <ul class="flex gap-8">
+        {navigation.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+              class="underline hover:opacity-85 transition-opacity"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

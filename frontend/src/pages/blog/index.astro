@@ -1,0 +1,37 @@
+---
+// src/pages/blog/index.astro
+import Layout from '../../layouts/Layout.astro';
+
+const apiUrl = import.meta.env.PAYLOAD_URL || "http://localhost:3000";
+const response = await fetch(`${apiUrl}/api/posts?limit=1000&draft=false&sort=-createdAt`);
+const { docs: posts } = await response.json();
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<Layout title="Blog">
+  <div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold mb-12">Blog</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => (
+        <article class="border rounded-lg p-6">
+          <h2 class="text-xl font-semibold mb-2">
+            <a href={`/blog/${post.slug}`}>
+              {post.title}
+            </a>
+          </h2>
+          <time class="text-gray-500 text-sm">
+            {formatDate(post.createdAt)}
+          </time>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>

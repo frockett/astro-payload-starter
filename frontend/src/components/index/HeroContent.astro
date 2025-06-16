@@ -1,0 +1,12 @@
+---
+interface Props {
+  landingPage: any;
+}
+const { landingPage } = Astro.props;
+---
+
+<section class="container mx-auto my-24 space-y-12 px-4">
+    <h1 class="text-4xl font-bold">{landingPage.hero.title}</h1>
+  <p>{landingPage.hero.subtitle}</p>
+  <a class="p-4 bg-black text-white" href={landingPage.hero.ctaLink}>{landingPage.hero.ctaText}</a>
+</section>
