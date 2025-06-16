@@ -8,8 +8,8 @@ This starter is based on the default blank Payload template with basic collectio
 - Payload CMS Backend: Headless CMS with admin panel for content management
 - Live Preview: Eschews "true" live reload in favor of a simpler approach (see [Live Preview](#live-preview))
 - Pre-built Components: Header and hero component that use Payload globals + blog template
-- Use of Payload's REST API.
-- Tailwind CSS + Typography plugin
+- Use of Payload's REST API
+- Tailwind CSS + Typography plugin with basic styling
 
 ```
 ├── backend/          # Payload CMS
