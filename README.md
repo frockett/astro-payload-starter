@@ -48,28 +48,36 @@ This repo serves two purposes:
    ```
 2. **Install Dependencies**
    ```bash
-   npm install
+   cd frontend/ && npm install
+   cd backend/ && npm install
    ```
-3. Copy `env.example` files
+3. Copy `env.example` files and set `PAYLOAD_SECRET`
    ```bash
    cp frontend/.env.example frontend/.env
    cp backend/.env.example backend/.env
    ```
-4. **Start development servers from root directory**
+4. **Start development**
+
    ```bash
-   npm run dev
+   # Use two terminals
+
+   # Terminal 1
+   cd frontend/ && npm run dev
+
+   # Terminal 2
+   cd backend/ && npm run dev
    ```
 
 ## Environment Variables
 
 ```bash
 # frontend/.env
-PAYLOAD_URI=https://localhost:3000
+PAYLOAD_URI=http://localhost:3000
 
 # backend/.env
 DATABASE_URI=file:./testing-project.db
 PAYLOAD_SECRET=YOUR_PAYLOAD_SECRET
-CLIENT_URI=https://localhost:4321
+CLIENT_URI=http://localhost:4321
 ```
 
 ## Live Preview

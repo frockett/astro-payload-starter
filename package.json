@@ -1,18 +1,10 @@
 {
-    "name": "astro-payload-template",
-    "version": "1.0.0",
-    "private": true,
-    "workspaces": [
-        "front-end",
-        "testing-project"
-    ],
-    "scripts": {
-        "dev": "concurrently \"npm run dev -w front-end\" \"npm run dev -w testing-project\" --names \"astro,payload\" --prefix-colors \"blue,green\"",
-        "build": "npm run build --workspaces",
-        "start": "npm run start --workspaces",
-        "clean": "npm run clean --workspaces"
-    },
-    "devDependencies": {
-        "concurrently": "^8.2.2"
-    }
+  "name": "astro-payload-template",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd backend && npm dev",
+    "dev:frontend": "cd frontend && npm dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }

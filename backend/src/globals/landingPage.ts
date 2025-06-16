@@ -5,7 +5,7 @@ export const LandingPage: GlobalConfig = {
   label: 'Landing Page',
   admin: {
     livePreview: {
-      url: process.env.CLIENT_URI || 'http://localhost:4321/preview',
+      url: `${process.env.CLIENT_URI}/preview` || 'http://localhost:4321/preview',
     },
   },
   access: {
