@@ -5,11 +5,13 @@ This starter is based on the default blank Payload template with basic collectio
 ## Features
 
 - Astro Frontend: SSG on primary routes and SSR on `/preview/` routes
-- Payload CMS Backend: Headless CMS with admin panel for content management
-- Live Preview: Eschews "true" live reload in favor of a simpler approach (see [Live Preview](#live-preview))
-- Pre-built Components: Header and hero component that use Payload globals + blog template
+- Payload CMS Backend
+- Live Preview: Eschews "true" live preview in favor of a simpler approach (see [Live Preview](#live-preview))
+- Pre-built Components: Header and hero component that use Payload globals for limited editing + blog template.
 - Use of Payload's REST API
 - Tailwind CSS + Typography plugin with basic styling
+
+## Project Structure
 
 ```
 ├── backend/          # Payload CMS
@@ -26,16 +28,14 @@ This starter is based on the default blank Payload template with basic collectio
 │   │   ├── layouts/
 │   │   ├── pages/
 │   │   │   └── preview/ # Preview routes (SSR)
-│   │   └── lib/
+│   │   └── lib/ # Contains function for fetching globals on both preview and production routes
 │   └── astro.config.mjs
 ```
 
-## Motivation
-
-This repo serves two purposes:
+## Purpose
 
 - Be usable as a template for projects that combine Payload and Astro.
-- Offer an example of an unorthodox implementation of Live Reload that is highly flexible.
+- Offer an example of an unorthodox implementation of live preview that is highly flexible.
 
 ## Quick Start
 
@@ -78,6 +78,7 @@ PAYLOAD_URI=http://localhost:3000
 DATABASE_URI=file:./testing-project.db
 PAYLOAD_SECRET=YOUR_PAYLOAD_SECRET
 CLIENT_URI=http://localhost:4321
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
 ```
 
 ## Live Preview
