@@ -6,7 +6,7 @@ This starter is based on the default blank Payload template with basic collectio
 
 - Astro Frontend: SSG on primary routes and SSR on `/preview/` routes
 - Payload CMS Backend: Headless CMS with admin panel for content management
-- Live Reload: Live reload implementation. Eschews true live reload in favor of a simpler approach (see [Live Reload](#live-reload))
+- Live Reload: Live reload implementation. Eschews true live reload in favor of a simpler approach (see [Live Preview](#live-preview))
 - Pre-built Components: Header and hero component that use Payload globals + blog template
 - Use of Payload's REST API.
 - Tailwind CSS + Typography plugin
